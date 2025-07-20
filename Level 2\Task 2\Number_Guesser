@@ -1,0 +1,45 @@
+#Cognifyz intern\Level 2\Task 2\Number_Guesser
+
+
+import random
+
+def number_guesser():
+    print("Welcome to the Number Guesser Game!")
+    
+    # Get range from user
+    while True:
+        try:
+            lower = int(input("Enter the lower bound of the range: "))
+            upper = int(input("Enter the upper bound of the range: "))
+            if lower >= upper:
+                print("Upper bound must be greater than lower bound. Try again.")
+            else:
+                break
+        except ValueError:
+            print("Please enter valid integers.")
+
+    # Generate random number in that range
+    secret_number = random.randint(lower, upper)
+    attempts = 0
+
+    print(f"\nI'm thinking of a number between {lower} and {upper}... Try to guess it!")
+
+    while True:
+        try:
+            guess = int(input("Your guess: "))
+            attempts += 1
+
+            if guess < lower or guess > upper:
+                print(f"Please guess a number between {lower} and {upper}.")
+            elif guess < secret_number:
+                print("Too low! Try again.")
+            elif guess > secret_number:
+                print("Too high! Try again.")
+            else:
+                print(f"Congratulations! You guessed the number in {attempts} attempts.")
+                break
+        except ValueError:
+            print("Invalid input. Please enter an integer.")
+
+number_guesser()
+
